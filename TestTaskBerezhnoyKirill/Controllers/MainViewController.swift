@@ -132,14 +132,14 @@ extension MainViewController: MKMapViewDelegate {
         
         if annotation is NowLocationAnnotation {
             view = MKAnnotationView(
-            annotation: annotation,
-            reuseIdentifier: "NowLocation")
+                annotation: annotation,
+                reuseIdentifier: "NowLocation")
             view.image = UIImage(named: "nowLocation")
             return view
         }
         
         guard let annotation = annotation as? Person else {
-              return nil
+            return nil
         }
         if let dequeuedView = mapView.dequeueReusableAnnotationView(
             withIdentifier: identifier) {
@@ -147,8 +147,8 @@ extension MainViewController: MKMapViewDelegate {
             view = dequeuedView
         } else {
             view = MKAnnotationView(
-            annotation: annotation,
-            reuseIdentifier: identifier)
+                annotation: annotation,
+                reuseIdentifier: identifier)
             let firstImage = UIImage(named: "mark")
             let secondImage = annotation.newImage
             let newImage = firstImage?.createImage(image: secondImage)
@@ -157,11 +157,6 @@ extension MainViewController: MKMapViewDelegate {
         }
         return view
     }
-//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//        let person = view.annotation as! Person
-//        let placeName = person.title
-//        let placeInfo = person.connection
-//    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let annotation = view.annotation as? Person else { return }
